@@ -5,7 +5,7 @@ Scrape Google Play App Reviews of any Android Application and writes it in a csv
 
 # Intial Setup:
 1. Download the [chromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) and extract cromeDrive exectuable.
-2. Replace the '/path/to/chromedriver' with the path of cromeDrive exectuable in Line 35.
+2. Replace the '/path/to/chromedriver' with the path of cromeDrive exectuable in [Line 32](https://github.com/ducktales/Google-Play-App-Review-Scrapper/blob/master/reviews_scrapper.py#L32).
 3. Get [python](https://www.python.org/downloads/) installed
 4. Get Selenium Python Module installed (pip install selenium)
 
