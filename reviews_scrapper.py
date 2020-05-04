@@ -13,20 +13,25 @@ def scroll_down():
 
         # Scroll down to the bottom.
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
         # Wait to load the page.
-        sleep(2)
+        sleep(10)
 
         # Calculate new scroll height and compare with last scroll height.
         new_height = driver.execute_script("return document.body.scrollHeight")
 
         if new_height == last_height:
-            break
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            sleep(30)
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            new_height = driver.execute_script("return document.body.scrollHeight")
+            if new_height == last_height:
+                print ("Height is same")
+                break
 
         last_height = new_height
 
 
-url = input("Enter the Goggle Play store url: ") 
+url = raw_input("Enter the Goggle Play store url: ") 
 #driver setup
 # add path to chromedriver
 driver = webdriver.Chrome("/path/to/chromedriver")
@@ -37,19 +42,24 @@ k = driver.get(link)
 
 scroll_down()
 
-for i in range(10000):
+no_of_exec = 5
+for i in range(1000):
     try: 
         show_more_xpath=driver.find_element_by_xpath('//*[@id="fcxH9b"]/div[4]/c-wiz/div/div[2]/div/div[1]/div/div/div[1]/div[2]/div[2]/div')
         show_more_xpath.click()
         scroll_down()
     except Exception as e:
-        print ("page load complete")
-        break
-
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);") 
+        scroll_down()
+        print (e)
+        no_of_exec= no_of_exec -1
+        if(no_of_exec<=0):
+            print ("page load complete")
+            break
+            
 Ptitle = driver.find_element_by_class_name('AHFaub').text.replace(' ','')
 file_name= Ptitle+'_reviews_list.csv'
-print ("File Name: "+file_name)
-sleep(1)                    
+print ("File Name: "+file_name)                
 xpath=driver.find_element_by_xpath('//*[@id="fcxH9b"]/div[4]/c-wiz/div/div[2]/div/div[1]/div/div/div[1]/div[2]')
 print ("Total Review : "+ str(len(xpath.find_elements_by_xpath("//div[@jscontroller='H6eOGe']"))))
 
