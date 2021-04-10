@@ -31,7 +31,7 @@ def scroll_down():
         last_height = new_height
 
 
-url = raw_input("Enter the Goggle Play store url: ") 
+url = input("Enter the Goggle Play store url: ") 
 #driver setup
 # add path to chromedriver
 driver = webdriver.Chrome("/path/to/chromedriver")
