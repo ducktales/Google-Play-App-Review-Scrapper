@@ -45,7 +45,7 @@ scroll_down()
 no_of_exec = 5
 for i in range(1000):
     try: 
-        show_more_xpath=driver.find_element_by_xpath('//*[@id="fcxH9b"]/div[4]/c-wiz/div/div[2]/div/div[1]/div/div/div[1]/div[2]/div[2]/div')
+        show_more_xpath=driver.find_element_by_xpath('//*[@id="fcxH9b"]/div[4]/c-wiz/div/div[2]/div/div/main/div/div[1]/div[2]/div[2]/div')
         show_more_xpath.click()
         scroll_down()
     except Exception as e:
@@ -60,7 +60,8 @@ for i in range(1000):
 Ptitle = driver.find_element_by_class_name('AHFaub').text.replace(' ','')
 file_name= Ptitle+'_reviews_list.csv'
 print ("File Name: "+file_name)                
-xpath=driver.find_element_by_xpath('//*[@id="fcxH9b"]/div[4]/c-wiz/div/div[2]/div/div[1]/div/div/div[1]/div[2]')
+xpath=driver.find_element_by_xpath('//*[@id="fcxH9b"]/div[4]/c-wiz/div/div[2]/div/div/main/div/div[1]/div[2]/div[2]/div
+')
 print ("Total Review : "+ str(len(xpath.find_elements_by_xpath("//div[@jscontroller='H6eOGe']"))))
 
 reviews_df = []
